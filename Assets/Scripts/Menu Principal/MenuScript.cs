@@ -27,6 +27,11 @@ public class MenuScript : MonoBehaviour {
         Application.LoadLevel(1);
     }
 
+    public void OnPractice()
+    {
+        Application.LoadLevel(3);
+    }
+
     public void OnQuitGame()
     {
         Application.Quit();
