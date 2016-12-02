@@ -5,10 +5,11 @@ public class PlayerCollision : MonoBehaviour {
 
     public ContactPoint2D[] tempContact;
     public AudioManager audioManager;
+    public int floorState = 0; //0 = normal, 1 = slow, 2 = slide
 
     public void Awake()
     {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     
     void OnCollisionEnter2D(Collision2D thisCollision)
@@ -84,10 +85,12 @@ public class PlayerCollision : MonoBehaviour {
             if (p_collider.GetComponent<DragArea>().dragValue < 0)
             {
                 GetComponent<PlayerAdministrator>().PlaySound(AudioManager.SFXType.SLIDE_AREA);
+                floorState = 2;
             }
             else
             {
                 GetComponent<PlayerAdministrator>().PlaySound(AudioManager.SFXType.SLOW_AREA);
+                floorState = 1;
             }
         }
         else if (p_collider.gameObject.tag == "PowerUp")
@@ -105,6 +108,7 @@ public class PlayerCollision : MonoBehaviour {
         if (p_collider.tag == "DragArea")
         {
             GetComponent<Rigidbody2D>().drag -= p_collider.GetComponent<DragArea>().dragValue;
+            floorState = 0;
         }
     }
 }

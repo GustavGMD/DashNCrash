@@ -40,7 +40,7 @@ public class PlayerElements : MonoBehaviour {
     void Awake()
     {
         //myMesseger = myNM.myMesseger;
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         Armor_max = new int[4];
         Armor_curr = new int[4];
@@ -103,7 +103,7 @@ public class PlayerElements : MonoBehaviour {
         //tenta causar dano na armadura, se falhar é pq não tinha então deve morrer
         if (!ApplyArmorDebuff(armor_index))
         {
-            audioManager.PlaySound(AudioManager.SFXType.COLLISION_DEATH);
+            //audioManager.PlaySound(AudioManager.SFXType.COLLISION_DEATH);
             GetComponent<PlayerAdministrator>().InstantiateParticle(2, transform.position);
             DeathProcedure();
         }
@@ -128,17 +128,18 @@ public class PlayerElements : MonoBehaviour {
         UpdateScoreStats();
         DeactivateUnit();
         gameObject.SetActive(false);
+        Application.LoadLevel(Application.loadedLevel);
     }
     
     void DeactivateUnit()
     {
-        audioManager.PlaySound(AudioManager.SFXType.COLLISION_DEATH);
+        //audioManager.PlaySound(AudioManager.SFXType.COLLISION_DEATH);
         gameObject.SetActive(false);
     }
         
     void UpdateArmorSprite(int armor_index, int dmg)
     {
-        audioManager.PlaySound(AudioManager.SFXType.COLLISION_DAMAGE);
+        //audioManager.PlaySound(AudioManager.SFXType.COLLISION_DAMAGE);
         GetComponent<PlayerAdministrator>().InstantiateParticles(GetComponent<PlayerAdministrator>().damageParticles, transform.position);
         myArmor[armor_index].ApplyDamage(dmg);
     }

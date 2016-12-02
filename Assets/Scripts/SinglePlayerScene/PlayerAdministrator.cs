@@ -24,7 +24,7 @@ public class PlayerAdministrator : MonoBehaviour {
     void Awake()
     {
         //Camera.main.GetComponent<CameraFocus>().AddPlayerObject(gameObject);
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }    
 
     public void Start()
@@ -44,8 +44,8 @@ public class PlayerAdministrator : MonoBehaviour {
             if (powerUp.type == PowerUp.PowerUpType.SHIELD)
             {
                 RemovePowerUp();
-                audioManager.PlaySound(AudioManager.SFXType.POWER_UP_SHIELD);
-                PlaySound(AudioManager.SFXType.POWER_UP_SHIELD);
+                //audioManager.PlaySound(AudioManager.SFXType.POWER_UP_SHIELD);
+                //PlaySound(AudioManager.SFXType.POWER_UP_SHIELD);
                 GetComponent<PlayerManager>().Rpc_InstantiateParticle(0, transform.position);
             }
             else
@@ -66,8 +66,8 @@ public class PlayerAdministrator : MonoBehaviour {
     {
         UpdateVisualEffect(p_powerup.type, true);
         powerUp = p_powerup;
-        audioManager.PlaySound(AudioManager.SFXType.POWER_UP_COLLECT);
-        PlaySound(AudioManager.SFXType.POWER_UP_COLLECT);
+        //audioManager.PlaySound(AudioManager.SFXType.POWER_UP_COLLECT);
+        //PlaySound(AudioManager.SFXType.POWER_UP_COLLECT);
     }
     
 
@@ -126,11 +126,11 @@ public class PlayerAdministrator : MonoBehaviour {
         if (p_sound == AudioManager.SFXType.DASH_RELEASE)
         {
             float __pitch = (Mathf.Sin(Mathf.Deg2Rad * LobbyGUI.RGBtoHSV(bodyColor)[0]) * 1.5f) + 1.5f;
-            audioManager.PlayPitchedSound(p_sound, __pitch);
+            //audioManager.PlayPitchedSound(p_sound, __pitch);
         }
         else
         {
-            audioManager.PlaySound(p_sound);
+            //audioManager.PlaySound(p_sound);
         }
     }
 
